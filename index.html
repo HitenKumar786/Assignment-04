@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Todo app</h1>
+    <form onsubmit="Posttodo();return false">
+        Enter here:
+        <input type="text" id="todo" placeholder="Enter Here">
+        <button type="submit" onclick="todo">Add</button>
+    </form>
+
+    <h1 id="result"></h1>
+    <script>
+        function Posttodo() {
+
+
+            let todoText = document.querySelector("#todo").value
+
+            axios.post(`http://192.168.0.109:3000/todo`, {
+                    text: todoText
+                })
+                .then(function(response) {
+                    console.log(response.data);
+                    document.querySelector("#result").innerHTML = ""
+
+                    response.data.data.map(eachtodo => {
+
+                        document.querySelector("#result").innerHTML += eachtodo + '<br>'
+
+                    })
+
+                })
+
+            .catch(function(error) {
+                console.log(error);
+            })
+
+
+        }
+
+        function getAlltodos() {
+            axios.get(`http://192.168.0.109:3000/todos`)
+                .then(function(response) {
+                    console.log(response.data);
+                    document.querySelector("#result").innerHTML = ""
+
+                    response.data.data.map(eachtodo => {
+
+                        document.querySelector("#result").innerHTML += eachtodo + '<br>'
+
+                    })
+
+                })
+
+            .catch(function(error) {
+                console.log(error);
+            })
+        }
+
+
+        setInterval(getAlltodos, 1000);
+    </script>
+
+
+</body>
+
+</html>

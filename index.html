@@ -12,20 +12,33 @@
 
 <body>
     <h1 class="heading">Todo app</h1>
+
+    <H2 class="classid"> Class ID</H2>
+    <input type="text" id="Enterclass">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div id="main"></div>
     <form onsubmit="Posttodo();return false">
         Enter here:
         <input type="text" id="todo" placeholder="Enter text or link">
         <button type="submit" onclick="todo">Add</button>
     </form>
 
-    <h1 id="result"></h1>
+
+    <div id="mainresult">
+        <h1 id="result"></h1>
+    </div>
+    </div>
     <script>
         function Posttodo() {
 
 
             let todoText = document.querySelector("#todo").value
 
-            axios.post(`https://192.168.0.109:3000/todo`, {
+            axios.post(`http://localhost:3000/todo`, {
                     text: todoText
                 })
                 .then(function(response) {
@@ -48,7 +61,7 @@
         }
 
         function getAlltodos() {
-            axios.get(`https://192.168.0.109:3000/todos`)
+            axios.get(`http://localhost:3000/todos`)
                 .then(function(response) {
                     console.log(response.data);
                     document.querySelector("#result").innerHTML = ""

@@ -5,15 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
     <title>Document</title>
 </head>
 
 <body>
-    <h1>Todo app</h1>
+    <h1 class="heading">Todo app</h1>
     <form onsubmit="Posttodo();return false">
         Enter here:
-        <input type="text" id="todo" placeholder="Enter Here">
+        <input type="text" id="todo" placeholder="Enter text or link">
         <button type="submit" onclick="todo">Add</button>
     </form>
 
@@ -24,7 +25,7 @@
 
             let todoText = document.querySelector("#todo").value
 
-            axios.post(`http://192.168.0.109:3000/todo`, {
+            axios.post(`https://192.168.0.109:3000/todo`, {
                     text: todoText
                 })
                 .then(function(response) {
@@ -47,7 +48,7 @@
         }
 
         function getAlltodos() {
-            axios.get(`http://192.168.0.109:3000/todos`)
+            axios.get(`https://192.168.0.109:3000/todos`)
                 .then(function(response) {
                     console.log(response.data);
                     document.querySelector("#result").innerHTML = ""
@@ -66,7 +67,7 @@
         }
 
 
-        setInterval(getAlltodos, 1000);
+        setInterval(getAlltodos, 3000);
     </script>
 
 

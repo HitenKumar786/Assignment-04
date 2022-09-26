@@ -38,7 +38,7 @@
 
             let todoText = document.querySelector("#todo").value
 
-            axios.post(`http://localhost:3000/todo`, {
+            axios.post(`https://lonely-leotard-cod.cyclic.app/todo`, {
                     text: todoText
                 })
                 .then(function(response) {
@@ -61,7 +61,7 @@
         }
 
         function getAlltodos() {
-            axios.get(`http://localhost:3000/todos`)
+            axios.get(`https://lonely-leotard-cod.cyclic.app/todos`)
                 .then(function(response) {
                     console.log(response.data);
                     document.querySelector("#result").innerHTML = ""
